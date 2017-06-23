@@ -1,1 +1,1 @@
-clock: python teacher-scraper.py
+clock: python scheduler.py
