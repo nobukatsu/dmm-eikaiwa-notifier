@@ -12,6 +12,7 @@ def scrape():
     now = datetime.now()
     this_year = now.strftime("%Y")
 
+    # each teacher
     for id_ in ids:
         teacher_url = BASE_URL + id_ + "/"
         
@@ -21,13 +22,20 @@ def scrape():
         teacher_name = get_teacher_name(soup)
 
         schedule_list = soup.find("div", class_="schedules-list")
-        today_column = schedule_list.find("ul", class_="oneday")
-        target_date = get_schedule_date(today_column.find("li").get_text(), this_year)
+        day_columns = schedule_list.find_all("ul", class_="oneday")
 
-        print("id: " + id_)
-        print("name: " + teacher_name)
-        print(target_date)
-        print(today_column)
+        # each day
+        for day_column in day_columns:
+            # each time
+            for time_row in day_column.find_all("li"):
+                print(time_row)
+
+        # target_date = get_schedule_date(day_column.find("li").get_text(), this_year)
+        #
+        # print("id: " + id_)
+        # print("name: " + teacher_name)
+        # print(target_date)
+        # print(day_columns)
 
 
 def get_target_ids():
