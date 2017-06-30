@@ -6,8 +6,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Scrapy stuff:
-.scrapy
-
 # PyCharm
 .idea
+
+# config file for development
+*.dev
