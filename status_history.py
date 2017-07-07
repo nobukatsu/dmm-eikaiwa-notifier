@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def save_history(teacher_id, name, status, class_date):
-    conn = get_conn()
+    conn = __get_conn()
     cur = conn.cursor()
 
     cur.execute("insert into status_history(teacher_id, name, status, class_date, acquisition_date) "
@@ -18,7 +18,7 @@ def save_history(teacher_id, name, status, class_date):
 
 
 def get_history(teacher_id, status, class_date):
-    conn = get_conn()
+    conn = __get_conn()
     cur = conn.cursor()
 
     cur.execute("select teacher_id,name,status,class_date from status_history "
@@ -33,7 +33,7 @@ def get_history(teacher_id, status, class_date):
     return result
 
 
-def get_conn():
+def __get_conn():
     urllib.parse.uses_netloc.append("postgres")
     url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
 
